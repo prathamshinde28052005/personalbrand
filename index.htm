@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART HOSPITAL ASSISTANCE</title>
+    <link rel="stylesheet" href="pp2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container" id="main-container">
+        <!-- Login Page (Default View) -->
+        <div class="page" id="login-page">
+            <div class="jellyfish-logo">
+                <div class="jellyfish">
+                    <div class="bell"></div>
+                    <div class="tentacles">
+                        <div class="tentacle"></div>
+                        <div class="tentacle"></div>
+                        <div class="tentacle"></div>
+                        <div class="tentacle"></div>
+                    </div>
+                </div>
+                <h1>PRATHAM HOSPITAL</h1>
+            </div>
+            
+            <div class="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="three-d-input">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="three-d-input">
+                </div>
+                <button class="three-d-button" id="login-btn">LOGIN</button>
+            </div>
+        </div>
+        
+        <!-- Main Menu Page -->
+        <div class="page hidden" id="main-menu">
+            <div class="header">
+                <div class="jellyfish-logo small">
+                    <div class="jellyfish">
+                        <div class="bell"></div>
+                        <div class="tentacles">
+                            <div class="tentacle"></div>
+                            <div class="tentacle"></div>
+                        </div>
+                    </div>
+                </div>
+                <h2>SMART HOSPITAL ASSISTANCE</h2>
+                <button class="three-d-button logout-btn" id="logout-btn">LOGOUT</button>
+            </div>
+            
+            <div class="menu-grid">
+                <button class="three-d-menu-button" data-page="add-patient">
+                    <div class="button-icon">➕</div>
+                    <span>Add Patient</span>
+                </button>
+                <button class="three-d-menu-button" data-page="view-patient">
+                    <div class="button-icon">👁️</div>
+                    <span>View Patient</span>
+                </button>
+                <button class="three-d-menu-button" data-page="delete-patient">
+                    <div class="button-icon">❌</div>
+                    <span>Delete Patient</span>
+                </button>
+                <button class="three-d-menu-button" data-page="upload-photo">
+                    <div class="button-icon">📷</div>
+                    <span>Upload Photo</span>
+                </button>
+                <button class="three-d-menu-button" data-page="ai-assistant">
+                    <div class="button-icon">🤖</div>
+                    <span>AI Assistant</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Add Patient Page -->
+        <div class="page hidden" id="add-patient">
+            <div class="header">
+                <button class="three-d-button back-btn" data-page="main-menu">← BACK</button>
+                <h2>ADD NEW PATIENT</h2>
+            </div>
+            
+            <div class="form-container">
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="patient-id">Patient ID</label>
+                        <input type="text" id="patient-id" class="three-d-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="patient-name">Patient Name</label>
+                        <input type="text" id="patient-name" class="three-d-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="doctor-name">Doctor Name</label>
+                        <input type="text" id="doctor-name" class="three-d-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" class="three-d-input">
+                    </div>
+                </div>
+                <div class="form-column">
+                    <div class="form-group">
+                        <label for="gender">Gender (M/F/Other)</label>
+                        <input type="text" id="gender" class="three-d-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Contact Number</label>
+                        <input type="text" id="contact" class="three-d-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="medication">Medication</label>
+                        <input type="text" id="medication" class="three-d-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="appointment-date">Appointment Date</label>
+                        <input type="date" id="appointment-date" class="three-d-input">
+                    </div>
+                </div>
+                <div class="form-group full-width">
+                    <label for="treatment-history">Treatment History</label>
+                    <textarea id="treatment-history" class="three-d-input" rows="4"></textarea>
+                </div>
+                <button class="three-d-button save-btn" id="save-patient-btn">SAVE PATIENT</button>
+            </div>
+        </div>
+        
+        <!-- View Patient Page -->
+        <div class="page hidden" id="view-patient">
+            <div class="header">
+                <button class="three-d-button back-btn" data-page="main-menu">← BACK</button>
+                <h2>VIEW PATIENT DETAILS</h2>
+            </div>
+            
+            <div class="search-container">
+                <div class="form-group">
+                    <label for="search-id">Enter Patient ID</label>
+                    <div class="search-box">
+                        <input type="text" id="search-id" class="three-d-input">
+                        <button class="three-d-button" id="search-btn">SEARCH</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="patient-details hidden" id="patient-details">
+                <div class="details-column">
+                    <div class="detail-item">
+                        <span class="detail-label">Patient ID:</span>
+                        <span class="detail-value" id="detail-id"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Patient Name:</span>
+                        <span class="detail-value" id="detail-name"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Doctor Name:</span>
+                        <span class="detail-value" id="detail-doctor"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Age:</span>
+                        <span class="detail-value" id="detail-age"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Gender:</span>
+                        <span class="detail-value" id="detail-gender"></span>
+                    </div>
+                </div>
+                <div class="details-column">
+                    <div class="detail-item">
+                        <span class="detail-label">Contact:</span>
+                        <span class="detail-value" id="detail-contact"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Medication:</span>
+                        <span class="detail-value" id="detail-medication"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Appointment Date:</span>
+                        <span class="detail-value" id="detail-date"></span>
+                    </div>
+                    <div class="detail-item full-width">
+                        <span class="detail-label">Treatment History:</span>
+                        <div class="detail-value" id="detail-history"></div>
+                    </div>
+                </div>
+                <div class="photo-column">
+                    <div class="patient-photo" id="patient-photo">
+                        <div class="photo-placeholder">NO PHOTO AVAILABLE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Delete Patient Page -->
+        <div class="page hidden" id="delete-patient">
+            <div class="header">
+                <button class="three-d-button back-btn" data-page="main-menu">← BACK</button>
+                <h2>DELETE PATIENT</h2>
+            </div>
+            
+            <div class="delete-container">
+                <div class="form-group">
+                    <label for="delete-id">Enter Patient ID to Delete</label>
+                    <input type="text" id="delete-id" class="three-d-input">
+                </div>
+                <button class="three-d-button danger" id="delete-btn">DELETE PATIENT</button>
+                <div class="warning">Warning: This action cannot be undone!</div>
+            </div>
+        </div>
+        
+        <!-- Upload Photo Page -->
+        <div class="page hidden" id="upload-photo">
+            <div class="header">
+                <button class="three-d-button back-btn" data-page="main-menu">← BACK</button>
+                <h2>UPLOAD PATIENT PHOTO</h2>
+            </div>
+            
+            <div class="upload-container">
+                <div class="form-group">
+                    <label for="upload-id">Enter Patient ID</label>
+                    <input type="text" id="upload-id" class="three-d-input">
+                </div>
+                
+                <div class="photo-preview" id="photo-preview">
+                    <div class="preview-placeholder">NO PHOTO SELECTED</div>
+                </div>
+                
+                <div class="button-group">
+                    <button class="three-d-button" id="browse-btn">BROWSE PHOTO</button>
+                    <button class="three-d-button" id="upload-btn">UPLOAD PHOTO</button>
+                </div>
+                
+                <input type="file" id="photo-input" accept="image/*" style="display: none;">
+            </div>
+        </div>
+        
+        <!-- AI Assistant Page -->
+        <div class="page hidden" id="ai-assistant">
+            <div class="header">
+                <button class="three-d-button back-btn" data-page="main-menu">← BACK</button>
+                <h2>AI HEALTH ASSISTANT</h2>
+            </div>
+            
+            <div class="chat-container">
+                <div class="chat-box" id="chat-box">
+                    <div class="chat-message bot">
+                        <div class="message-content">Hello! How can I assist you today?</div>
+                    </div>
+                </div>
+                
+                <div class="chat-input">
+                    <input type="text" id="chat-input" class="three-d-input" placeholder="Type your message...">
+                    <button class="three-d-button" id="send-btn">SEND</button>
+                    <button class="three-d-button voice-btn" id="voice-btn">🎤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="pp2.js"></script>
+</body>
+</html>
